@@ -74,8 +74,6 @@ export default function Page() {
     <ShoppingCart className="w-7 h-7 stroke-[2.5]" />
   </a>
 </footer>
-
-
       {/* Slide-in sidebar (sits above everything when open) */}
       <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
     </main>
