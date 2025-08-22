@@ -1,7 +1,10 @@
 "use client"
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar({ open, onClose }) {
+  const router = useRouter();
+
   // lock scroll when open
   useEffect(() => {
     if (open) {
@@ -13,13 +16,20 @@ export default function Sidebar({ open, onClose }) {
   }, [open]);
 
   const items = [
-    { label: "HOME", href: "#" },
-    { label: "ABOUT", href: "#about" },
-    { label: "OUR ARTISTS", href: "#artists" },
-    { label: "SHOP", href: "#shop" },
-    { label: "CAREERS", href: "#careers" },
-    { label: "CONTACT", href: "#contact" },
+    { label: "HOME", href: "/", isRoute: true },
+    { label: "ABOUT", href: "/about", isRoute: true },
+    { label: "OUR ARTISTS", href: "/our-artists", isRoute: true },
+    { label: "SHOP", href: "/shop", isRoute: true },
+    { label: "CAREERS", href: "/careers", isRoute: true },
+    { label: "CONTACT", href: "/contact", isRoute: true },
   ];
+
+  const handleNavigation = (item) => {
+    if (item.isRoute) {
+      router.push(item.href);
+    }
+    onClose();
+  };
 
   return (
     <div className={`fixed inset-0 z-50 flex justify-end ${open ? "pointer-events-auto" : "pointer-events-none"}`} aria-hidden={!open}>
@@ -51,15 +61,14 @@ export default function Sidebar({ open, onClose }) {
           <ul className="mt-24 px-12 pb-16 space-y-8">
             {items.map((item, idx) => (
               <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={onClose}
-                  className={`block text-2xl sm:text-2xl md:text-3xl tracking-widest uppercase ${
+                <button
+                  onClick={() => handleNavigation(item)}
+                  className={`block text-2xl sm:text-2xl md:text-3xl tracking-widest uppercase w-full text-left cursor-pointer ${
                     idx === 0 ? "text-[#c4b183]" : "text-white"
                   } hover:text-[#c4b183] transition-colors`}
                 >
                   {item.label}
-                </a>
+                </button>
               </li>
             ))}
           </ul>
