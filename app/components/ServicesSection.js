@@ -41,24 +41,24 @@ export const data ={
   
 
 function GoldIcon({ name, className = '' }) {
+  // simple inline SVGs (muted, decorative)
   if (name === 'studio') {
     return (
-      <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    );
-  }
-  // &apos;note&apos;
-  if (name === 'note') {
-    return (
       <svg viewBox="0 0 48 48" className={`w-16 h-16 opacity-20 ${className}`}>
-        <rect x="4" y="10" width="40" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="2" />
-        <path d="M26 18v12a5 5 0 1 1-2-4v-8l14-3v10a5 5 0 1 1-2-4v-7l-10 2z" fill="none" stroke="currentColor" strokeWidth="2" />
+        <rect x="3" y="12" width="30" height="22" rx="3" fill="none" stroke="currentColor" strokeWidth="2" />
+        <circle cx="39" cy="22" r="6" fill="none" stroke="currentColor" strokeWidth="2" />
+        <line x1="39" y1="16" x2="39" y2="28" stroke="currentColor" strokeWidth="2" />
+        <line x1="6" y1="36" x2="27" y2="36" stroke="currentColor" strokeWidth="2" />
       </svg>
     );
   }
+  // 'note'
+  return (
+    <svg viewBox="0 0 48 48" className={`w-16 h-16 opacity-20 ${className}`}>
+      <rect x="4" y="10" width="40" height="28" rx="4" fill="none" stroke="currentColor" strokeWidth="2" />
+      <path d="M26 18v12a5 5 0 1 1-2-4v-8l14-3v10a5 5 0 1 1-2-4v-7l-10 2z" fill="none" stroke="currentColor" strokeWidth="2" />
+    </svg>
+  );
 }
 
 export default function ServicesSection() {
@@ -75,34 +75,31 @@ export default function ServicesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24
                         justify-items-center lg:justify-items-stretch ">
         {data.items.map((item) => {
-          return (
-            <div
-              key={item.id}
-              className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] p-8 transition-all duration-500 hover:scale-105 ${
-                item.tilt === 'left' ? '-rotate-2' : item.tilt === 'right' ? 'rotate-2' : ''
-              }`}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br from-[#c4b183]/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 ${
-                item.tilt === 'left' ? 'rotate-2' : item.tilt === 'right' ? '-rotate-2' : ''
-              }`} />
+          const outerTilt =
+            item.tilt === 'left' ? '-rotate-2' : item.tilt === 'right' ? 'rotate-2' : '';
+          const innerTilt =
+            item.tilt === 'left' ? 'rotate-2' : item.tilt === 'right' ? '-rotate-2' : '';
 
+          return (
+            <div key={item.id} className={`relative ${outerTilt}`}>
               {/* gradient "gold" frame */}
               <div className="bg-gradient-to-r from-[#b79c64] via-[#c8b07a] to-[#b79c64] p-[3px] rounded-sm shadow-[0_8px_40px_rgba(0,0,0,0.45)]">
-                <div className="bg-[#1a1a1a] rounded-sm p-6">
-                  {/* Icon */}
-                  <div className="mb-4 flex justify-center">
-                    <GoldIcon name={item.icon} className="w-16 h-16 text-[#c4b183]" />
+                {/* content box (counter-tilt to look straight) */}
+                <div className={`relative ${innerTilt} bg-[#0c0c0c] p-8 md:p-12`}>
+                  <GoldIcon name={item.icon} className="absolute right-6 top-6 text-white/70" />
+
+                  <div className="relative z-10">
+                    <h3 className="text-[#bfbfbf] font-extrabold uppercase tracking-wide
+                                   text-2xl md:text-3xl leading-[1.05]">
+                      {item.titleLine1}
+                      <br />
+                      <span className="text-white/90">{item.titleLine2}</span>
+                    </h3>
+
+                    <p className="mt-6 text-white/70 text-base md:text-lg leading-relaxed max-w-[48ch]">
+                      {item.description}
+                    </p>
                   </div>
-                  
-                  {/* Title */}
-                  <h3 className="text-xl font-bold text-white mb-3 text-center">
-                    {item.title}
-                  </h3>
-                  
-                  {/* Description */}
-                  <p className="text-white/70 text-center leading-relaxed">
-                    {item.description}
-                  </p>
                 </div>
               </div>
             </div>
