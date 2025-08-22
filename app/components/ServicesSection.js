@@ -61,7 +61,6 @@ function GoldIcon({ name, className = '' }) {
   );
 }
 
-
 export default function ServicesSection() {
   return (
     <section className="relative bg-[#0f0f0f] text-white px-5 sm:px-8 pt-24 pb-28">
