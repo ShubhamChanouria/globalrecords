@@ -70,7 +70,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-[68rem] py-10 sm:py-24">
           <p className="font-medium leading-[1.22] tracking-wide text-white/95
                         text-[8vw] sm:text-[6vw] md:text-[3.2vw] lg:text-[2.2vw]">
-            Great music doesn't just happen, it needs to be discovered and brought to
+            Great music doesn&apos;t just happen, it needs to be discovered and brought to
             people. Music is a state of mind, it lives in each of us, it changes
             mentalities and helps no matter what. It represents creativity and joy.
           </p>

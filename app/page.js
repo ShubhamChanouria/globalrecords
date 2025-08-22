@@ -8,7 +8,7 @@ import {
   Spotify,
   Youtube,
   Instagram,
-  Music2 as Tiktok, // Lucide doesn't have TikTok, so we'll alias Music2
+  Music2 as Tiktok, // Lucide doesn&apos;t have TikTok, so we&apos;ll alias Music2
   Linkedin,
   Facebook,
   ShoppingCart
