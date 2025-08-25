@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Sidebar from './components/Sidebar';
+import Sidebar, { MenuButton } from './components/Sidebar';
 import {
   Apple,
   Spotify,
@@ -47,15 +47,7 @@ export default function Page() {
           </span>
         </button>
 
-        <button
-          aria-label="Open Menu"
-          onClick={() => setMenuOpen(true)}
-          className="group relative h-10 w-10 flex flex-col justify-center items-center gap-1 absolute"
-        >
-          <span className="h-[2px] w-7 bg-white" />
-          <span className="h-[2px] w-7 bg-white" />
-          <span className="h-[2px] w-7 bg-white" />
-        </button>
+        <MenuButton onClick={() => setMenuOpen(true)} />
       </header>
 
       {/* Footer made absolute (top layer) */}

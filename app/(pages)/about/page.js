@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Sidebar from '../../components/Sidebar';
+import Sidebar, { MenuButton } from '../../components/Sidebar';
 import ServicesSection from '@/app/components/ServicesSection';
+import Footer from '../../components/Footer';
 
 export default function AboutPage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,15 +39,7 @@ export default function AboutPage() {
           </span>
         </button>
 
-        <button
-          aria-label="Open Menu"
-          onClick={() => setMenuOpen(true)}
-          className="group relative h-10 w-10 flex flex-col justify-center items-center gap-1"
-        >
-          <span className="h-[2px] w-7 bg-white" />
-          <span className="h-[2px] w-7 bg-white" />
-          <span className="h-[2px] w-7 bg-white" />
-        </button>
+        <MenuButton onClick={() => setMenuOpen(true)} />
       </header>
 
       {/* ===== SECTION 1: headline scrolls with content ===== */}
@@ -126,14 +119,17 @@ export default function AboutPage() {
         </div>
       </div>
 <ServicesSection/>
-      {/* ===== BLACK SECTION (covers the fixed bg below) ===== */}
-      <section className="relative z-20 bg-black">
-        <div className="px-5 sm:px-8 pb-28 max-w-[68rem] mx-auto">
-          {/* next sections go here */}
-        </div>
-      </section>
+       {/* ===== BLACK SECTION (covers the fixed bg below) ===== */}
+       <section className="relative z-20 bg-black">
+         <div className="px-5 sm:px-8 pb-28 max-w-[68rem] mx-auto">
+           {/* next sections go here */}
+         </div>
+       </section>
 
-      <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
+       {/* Footer */}
+       <Footer />
+
+       <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
     </main>
   );
 }
