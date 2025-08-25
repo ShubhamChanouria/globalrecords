@@ -2,6 +2,21 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
+// Hamburger menu button component that can be used independently
+export function MenuButton({ onClick, className = "" }) {
+  return (
+    <button
+      aria-label="Open Menu"
+      onClick={onClick}
+      className={`group relative h-10 w-10 flex flex-col justify-center items-center gap-1 cursor-pointer ${className}`}
+    >
+      <span className="h-[2px] w-7 bg-white" />
+      <span className="h-[2px] w-7 bg-white" />
+      <span className="h-[2px] w-7 bg-white" />
+    </button>
+  );
+}
+
 export default function Sidebar({ open, onClose }) {
   const router = useRouter();
 

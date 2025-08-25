@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Sidebar from '../../components/Sidebar';
+import Sidebar, { MenuButton } from '../../components/Sidebar';
 import ServicesSection from '@/app/components/ServicesSection';
+import Footer from '@/app/components/Footer';
 
 export default function AboutPage() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -78,15 +79,7 @@ export default function AboutPage() {
           </span>
         </button>
 
-        <button
-          aria-label="Open Menu"
-          onClick={() => setMenuOpen(true)}
-          className="group relative h-10 w-10 flex flex-col justify-center items-center gap-1"
-        >
-          <span className="h-[2px] w-7 bg-white" />
-          <span className="h-[2px] w-7 bg-white" />
-          <span className="h-[2px] w-7 bg-white" />
-        </button>
+        <MenuButton onClick={() => setMenuOpen(true)} />
       </header>
 
       {/* ===== SECTION 1: headline scrolls with content ===== */}
@@ -201,6 +194,7 @@ export default function AboutPage() {
           {/* next sections go here */}
         </div>
       </section>
+      <Footer/>
 
       <Sidebar open={menuOpen} onClose={() => setMenuOpen(false)} />
     </main>
