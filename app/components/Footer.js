@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Main heading */}
           <div className="mb-12">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-2">
-              Don't be shy,
+              Dont be shy,
             </h2>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white">
               say hi!
